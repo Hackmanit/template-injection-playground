@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+
+<div class="grid-container">
+    <div class="grid-header-heading">
+        <a class="heading" href="/index.html">Template Injection Playground</a>
+    </div>
+    <div class="grid-header-rest">
+        <a class="header-link" href="/engines.html">Template Engines</a>
+        <a class="header-link" href="/config.html">Config</a>
+        <a class="header-link" href="/links.html">Links</a>
+        <a class="header-link" href="/random.html">Random</a>
+    </div>
+    
+    <div class="grid-getConfig">
+        <h2>Current Config</h2>
+        <label id="lblConfig">loading...</label>
+    </div>
+
+    <div class="grid-setConfig">
+        <h2>Set New Config</h2>
+        <input type="text" id="input" value="" size="100">
+        <br><br>
+        <button class="btn-small" onclick="setConfig()">Set new Config</button>
+        <label id="lblResult" style="margin-left: 10px;"></label>
+    </div>
+    <div class="grid-3thRow">
+        <br>
+        <h3>Set/Get Config via API</h3>
+        <p>Set config with curl 127.0.0.1:13370/setConfig/ -d '{"hideError":0,"removeArray":[],"htmlEncode":0,"special":"","csrfProtection":""}'</p>
+        <p>Get current config with curl 127.0.0.1:13370/getConfig/</p>
+    </div>
+    <div class="grid-4thRow">
+        <br>
+        <h3>Configuration Options</h3>
+        <dl style="color:white;">
+            <dt><label>&raquo; </label>"hideError":1</dt>
+            <dd><p>catches and surpresses error messages thrown by the template engines.</p></dd>
+            <dt><label>&raquo; </label>"removeArray":[]</dt>
+            <dd><p>may contain an Array of characters or words to remove from the name parameter. E.g. [".","&","script"] removes every comma, ampersand and the word script.</p></dd>
+            <dt><label>&raquo; </label>"htmlEncode":1</dt>
+            <dd><p>HTML encodes the 5 characters &,<,>,',".</p></dd>
+            <dt><label>&raquo; </label>"special":"headerOrigin"</dt>
+            <dd><p>Instead of the name parameter, the value of the 'Origin' header is inserted into the template.</p></dd>
+            <dt><label>&raquo; </label>"special":"blind"</dt>
+            <dd><p>hides the template engine output.</p></dd>
+            <dt><label>&raquo; </label>"special":"otherLocation"</dt>
+            <dd><p>hides the template engine output and stores it in a file. The file content can be seen at <a class="link" href="/otherlocation/">127.0.0.1:13370/otherlocation/</a>. This URL is listed at <a class="link" href="/links.html">Links</a>.</p></dd>
+            <dt><label>&raquo; </label>"special":"otherLocationDirect"</dt>
+            <dd><p>hides the template engine output and stores it in a file. The file content can be seen at <a class="link" href="/otherlocationdirect/">127.0.0.1:13370/otherlocationdirect/</a>. This URL is returned in the response.</p></dd>
+            <dt><label>&raquo; </label>"csrfProtection":"static"</dt>
+            <dd><p>A random but static CSRF token will be generated at the start of the playground and embedded in each response containing a form.</p></dd>
+            <dt><label>&raquo; </label>"csrfProtection":"nonce"</dt>
+            <dd><p>A random CSRF token is generated and embedded in each response containing a form.</p></dd>
+            <dt><label>&raquo; </label>"lengthLimit":int</dt>
+            <dd><p>Sets the maximum allowed input length to the specified integer 'int'.</p></dd>
+        <br>
+        <h3>Important</h3>
+        <p>The configuration does only apply to POST requests. GET requests behave always the same way.</p>
+        <p>"removeArray" is validated before "htmlEncode".</p>
+    </div>
+</div>
+</body>
+<script>
+    fetch("/getConfig/")
+    .then((response) => response.text())
+    .then((data) => {document.getElementById('lblConfig').innerHTML = data; document.getElementById('input').value = data});
+
+    function setConfig() {
+        fetch("/setConfig/", {
+            method: "POST",
+            body: document.getElementById('input').value
+        })
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById('lblResult').innerHTML = data; 
+            if (data="successfully saved config") { 
+                document.getElementById('lblConfig').innerHTML = document.getElementById('input').value 
+            }
+        });
+    }
+</script>
+</html>

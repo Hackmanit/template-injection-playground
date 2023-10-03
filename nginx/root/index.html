@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+
+<div class="grid-container">
+   <div class="grid-header-heading">
+      <a class="heading" href="/index.html">Template Injection Playground</a>
+   </div>
+   <div class="grid-header-rest">
+      <a class="header-link" href="/engines.html">Template Engines</a>
+      <a class="header-link" href="/config.html">Config</a>
+      <a class="header-link" href="/links.html">Links</a>
+      <a class="header-link" href="/random.html">Random</a>
+   </div>
+
+   <div class="grid-2ndRow">
+      <p>
+         With the <i>Template Injection Playground</i> a large number of the <b>most relevant template engines</b> can be tested for <b>template injections</b>.<br>For this purpose, simple web pages are provided, each of which uses one of the template engines.<br>Furthermore, <b>various optional security measures</b> such as sandboxes, encodings and denylists can be activated.
+         <br><br>
+         The Playground consists of the four subpages:
+      </p>
+      <dl>
+         <dt><label>&raquo; </label><a  class="link" href="/engines.html">Template Engines</a></dt>
+         <dd><p>This page lists the implemented template engines. The template engines are assigned to their programming language and sorted in descending order of popularity.<br>Clicking on one of the template engines will take you to its overview page.<br>The overview page contains links to the documentation and the package manager website under Documentation.<br>The "Modes" section links to simple web pages that use the template engine. Most of them only have the "Default" mode. A few template engines also have a "Sandbox" or "Security" mode, if they offer such a thing.<br>In addition, most template engines have a cheat sheet that highlights special features and/or helpful template expressions.</p></dd>
+         <dt><label>&raquo; </label><a  class="link" href="/config.html">Config</a></dt>
+         <dd><p>This page allows you to make configurations that apply to all websites with template engines. In general, errors can be caught, characters/words can be forbidden, or special characters can be HTML-encoded. Furthermore, it can be configured that template engines do not return their output in the response, but in a different place or not at all. Last but not least CSRF tokens can be activated.</p></dd>
+         <dt><label>&raquo; </label><a  class="link" href="/links.html">Links</a></dt>
+         <dd><p>This page contains links to all web pages with template engines, including the different modes.<br>There is also a link to the echo web page, which shows the input, possibly modified due to the configuration. This is to test if scanners report a false positive for template injection.<br>It also links to the web page otherlocation, which - if set in the configuration - contains the output of the template engines. This is to test whether a scanner, after sending a template injection payload, will also look for the output in another specified location.</p></dd>
+         <dt><label>&raquo; </label><a  class="link" href="/random.html">Random</a></dt>
+         <dd><p>This page selects a random template engine on the first call and embeds it as an iframe. This allows you to test yourself and your approach in a black box scenario. <br>Two buttons allow you to either select a new random template engine or reveal the template engine. <br>You can also use the URL /getRandom/ instead of the iframe.</p></dd>
+      </ul>
+      <br>
+      <br>
+      <p>Get the current request count with curl 127.0.0.1:13370/getRequestCount/</p>
+      <p>Reset the current request count with curl 127.0.0.1:13370/resetRequestCount/</p>
+   </div>
+
+   <div class="grid-footer">
+      <label>Created by </label><a class="link" href="https://www.m10x.de">Maximilian Hildebrand</a></label>
+      <br><br>
+      <a href="https://www.hackmanit.de"><img src="/images/wbm_hackmanit.png" height="40"></a>
+      <br>
+      <a href="https://informatik.rub.de/nds/ "><img src="/images/rub_nds_inverted.png" height="90" style="object-position: 0 0px;"></a>
+   </div>
+</div>
+</body>
+</html>

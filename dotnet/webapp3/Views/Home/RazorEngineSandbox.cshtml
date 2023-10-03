@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "RazorEngineSandbox";
+}
+
+<form action="/dotnet/RazorEngineSandbox" method="post">
+    <label>Name</label>
+    <input name="name" type="text" value="" />
+    <input type="submit" value="submit" />
+</form>
+<br>
+<p id="rendered">
+@if (ViewBag.RenderedTemplate != null)
+{
+    @Html.Raw(ViewBag.RenderedTemplate)
+}
+</p>

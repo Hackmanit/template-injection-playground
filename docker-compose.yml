@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+      - "127.0.0.1:13370:80"
+
+  golang:
+    build: ./golang/
+
+  dotnet:
+    build: ./dotnet/
+
+  ruby:
+    build: ./ruby/
+
+  java:
+    build: ./java/
+
+  php:
+    build: ./php/
+
+  python:
+    build: ./python/
+
+  elixir:
+    build: ./elixir/
+
+  javascript:
+    build: ./javascript/

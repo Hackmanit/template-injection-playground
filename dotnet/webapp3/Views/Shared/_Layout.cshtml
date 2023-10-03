@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dotnet @ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-header-heading">
+            <a class="heading" href="/index.html">Template Injection Playground</a>
+        </div>
+        <div class="grid-header-rest">
+            <a class="header-link" href="/engines.html">Template Engines</a>
+            <a class="header-link" href="/config.html">Config</a>
+            <a class="header-link" href="/links.html">Links</a>
+            <a class="header-link" href="/random.html">Random</a>
+        </div>
+
+        <div class="grid-template">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

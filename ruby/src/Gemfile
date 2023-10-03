@@ -1,0 +1,12 @@
+source "http://rubygems.org"
+
+gem "sinatra"
+gem "puma"
+gem "tilt"
+gem "slim"
+gem "erb"
+gem "erubi"
+gem "erubis"
+gem "haml"
+gem "liquid"
+gem "mustache"

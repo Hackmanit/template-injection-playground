@@ -1,0 +1,52 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    cgi (0.3.6)
+    erb (4.0.2)
+      cgi (>= 0.3.3)
+    erubi (1.12.0)
+    erubis (2.7.0)
+    haml (6.1.1)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    liquid (5.4.0)
+    mustache (1.1.1)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.8)
+    puma (6.1.1)
+      nio4r (~> 2.0)
+    rack (2.2.6.3)
+    rack-protection (3.0.5)
+      rack
+    ruby2_keywords (0.0.5)
+    sinatra (3.0.5)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.5)
+      tilt (~> 2.0)
+    slim (5.0.0)
+      temple (~> 0.10.0)
+      tilt (>= 2.0.6, < 2.1)
+    temple (0.10.0)
+    thor (1.2.1)
+    tilt (2.0.11)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  erb
+  erubi
+  erubis
+  haml
+  liquid
+  mustache
+  puma
+  sinatra
+  slim
+  tilt
+
+BUNDLED WITH
+   2.3.5

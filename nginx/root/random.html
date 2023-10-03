@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+
+<div class="grid-container">
+    <div class="grid-header-heading">
+        <a class="heading" href="/index.html">Template Injection Playground</a>
+    </div>
+    <div class="grid-header-rest">
+        <a class="header-link" href="/engines.html">Template Engines</a>
+        <a class="header-link" href="/config.html">Config</a>
+        <a class="header-link" href="/links.html">Links</a>
+        <a class="header-link" href="/random.html">Random</a>
+    </div>
+
+    <div class="grid-2ndRow">
+        <h2>Random Template Engine</h2>
+        <p>Here you can train to manually identify a randomly selected Template Engine.</p>
+        <p>Use the embedded iframe or the following URLs:</p>
+        <p><a class="link" href="/getRandom/">http://127.0.0.1:13370/getRandom/</a> returns the output of the template engine</p>
+        <p><a class="link" href="/newRandom/">http://127.0.0.1:13370/newRandom/</a> a new random template engine is selected</p>
+        <p><a class="link" href="/showRandom/">http://127.0.0.1:13370/showRandom/</a> the current template engine is revealed</p>
+    </div>
+    <div class="grid-randomEngine">
+        <div style="height: 300px; width: 100%; overflow: scroll; border:2px solid red;">
+            <iframe id="frame" src="/getRandom/" 
+            style="height: auto; width: 100%; background-color: white; border: none;"
+            scrolling="yes">
+        </iframe>  
+        </div>
+        <br>
+        <button class="btn" onclick="newEngine()">
+            New Random Engine
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn" onclick="showName()">
+            Show Engine Name
+        </button>
+        <h2 id="solution"></h2>
+    </div>
+</div>
+</body>
+<script>    
+    function newEngine() {
+        fetch("/newRandom/")
+        .then((response) => response.text())
+        .then((data) => { document.getElementById('solution').innerHTML = data; document.getElementById('frame').src="/getRandom/" });
+    }
+    function showName() {
+        fetch("/showRandom/")
+        .then((response) => response.text())
+        .then((data) => document.getElementById('solution').innerHTML = data);
+    }
+</script>
+</html>
