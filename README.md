@@ -2,93 +2,112 @@
 
 # Template Injection Playground
 
-With the *Template Injection Playground* a large number of the **most relevant template engines** can be tested for **template injections**. For this purpose, simple web pages are provided, each of which uses one of the template engines. Furthermore, **various optional security measures** such as sandboxes, encodings and denylists can be activated.
+With the *Template Injection Playground* a large number of the **most relevant template engines** (as of September 2023) can be tested for **template injection** possibilities. For this purpose, simple web pages are provided, each of which uses one of the template engines. Furthermore, **various optional security measures** such as sandboxes, encodings, and denylists can be activated.
+
+The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and Maximilian Hildebrand.
 
 - [Features](#features)
 - [Implemented Template Engines](#implemented-template-engines)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Troubleshooting](#troubleshooting)
+- [Background Information](#background-information)
+- [License](#license)
 
 ## Features
-- A total of **46 template engines** for 8 different programming languages are implemented
-- Each template engine can be customized
-    - Various optional countermeasures like **sandboxing**, **encoding**, **denylisting** and **hiding error messages**
-    - Various optional special cases like **header injection**, **template engine output is hidden** or **not displayed in the response but in another place**
-- Each template engine has an overview page which contains:
-    - Links to **documentation** and **interesting blog posts** (such as exploit research)
-    - Links to simple web pages using the template engine
-    - A **cheat sheet with special features** of the template engine and/or **helpful template expressions**. (not for all template engines)
+- A total of **46 template engines** for eight different programming languages are implemented.
+- Each template engine can be customized with:
+    - Various optional countermeasures such as **sandboxing**, **encoding**, **denylisting**, and **hiding error messages**.
+    - Various optional special cases such as **header injection**, **the template engine output is hidden**, or **the template engine output is not displayed in the response but in another place**.
+- For each template engine an overview page exists which contains:
+    - Links to **documentation** and **interesting blog posts** (such as exploit research).
+    - Links to simple web pages using the template engine.
+    - A **cheat sheet with special features** of the template engine and/or **helpful template expressions** (not for all template engines).
 - To simulate a **black box scenario**, a web page which chooses a **random template engine**.
 - Request counter in order to measure the number of requests a scanner sends.
 
 ## Implemented Template Engines
-### Javascript
-- Handlebars
-- EJS
-- Underscore
-- Vue.js
-- Mustache
-- Pug
-- Angular.js
-- Hogan.js
-- Nunjucks
-- Dot
-- Velocity.js
-- Eta
-- Twig.js
-### Python
-- Jinja2
-- Tornado
-- Mako
-- Django
-- SimpleTemplate Engine
-- Pystache
-- Cheetah3
-- Chameleon
+### .NET
+- Razor Engine
+- DotLiquid
+- Scriban
+- Fluid
+### Elixir
+- EEx
+### Go
+- html/template
+- text/template
 ### Java
-- Groovy
 - Freemarker
-- Velocity
+- Groovy
 - Thymeleaf
+- Velocity
+### JavaScript
+- Angular.js
+- Dot
+- EJS
+- Eta
+- Handlebars
+- Hogan.js
+- Mustache
+- Nunjucks
+- Pug
+- Twig.js
+- Underscore
+- Velocity.js
+- Vue.js
 ### PHP
 - Blade
-- Twig
+- Latte
 - Mustache.php
 - Smarty
-- Latte
+- Twig
+### Python
+- Chameleon
+- Cheetah3
+- Django
+- Jinja2
+- Mako
+- Pystache
+- SimpleTemplate Engine
+- Tornado
 ### Ruby
 - ERB
 - Erubi
 - Erubis
 - Haml
 - Liquid
-- Slim
 - Mustache
-### Dotnet
-- Razor Engine
-- DotLiquid
-- Scriban
-- Fluid
-### Golang
-- html/template
-- text/template
-### Elixir
-- EEx
+- Slim
 
 ## Prerequisites
-- [install docker compose](https://docs.docker.com/compose/install/)
-- download/clone this repository
+- Install [Docker Compose](https://docs.docker.com/compose/install/).
+- Download or clone this repository.
 
 ## Usage
-1. `docker compose build` to build the servers 
-2. `docker compose up` to start the servers and the playground
-3. open [http://127.0.0.1:13370](http://127.0.0.1:13370)
-
-Step 1 only needs to be done once, except when changes have been made
+1. Build the servers *(only needed at first launch or when changes have been made)*: `docker compose build`
+2. Start the servers and the playground: `docker compose up`
+3. Access the playground at [http://127.0.0.1:13370](http://127.0.0.1:13370) and start playing around.
 
 ## Troubleshooting
 - `Error starting userland proxy: listen tcp4 127.0.0.1:13370: bind: address already in use`
-    - a service already occupies the port that the playground wants to use. In this case, either the service must be stopped or the port of the playground must be changed. The port of the playground can be customized in the docker-compose.yaml file. In this case, the port 13370 must be changed for the service nginx.
-- `Secure Connection Failed`, `This site can’t provide a secure connection` or something similar
-    - The Playground does not support HTTPS and can therefore only be accessed with HTTP. Check that the URL starts with `http://` and not `https://`.
+    - Another service already uses the port that the playground wants to use. In this case, either the other service must be stopped or the port of the playground must be changed. The port of the playground can be customized in the [docker-compose.yml](docker-compose.yml) file: Change the port `13370` to any free port for the service `nginx`.
+- `Secure Connection Failed`, `This site can’t provide a secure connection` or something similar.
+    - The Playground does not support HTTPS and can therefore only be accessed using HTTP. Check that the URL starts with `http://` and not `https://` when accessing the playground.
+
+## Background Information
+A blog post providing more information about template injection and [TInja](https://github.com/Hackmanit/TInjA) can be found here:
+
+[Soon to be released](https://www.hackmanit.de/en/blog-en/)
+
+The Template Injection Playground was developed as a part of a master's thesis by Maximilian Hildebrand.
+You can find results of the master's thesis publicly available here:
+- [Template Injection Table](https://github.com/Hackmanit/template-injection-table)
+- [Playground](https://github.com/Hackmanit/template-injection-playground)
+- [TInja](https://github.com/Hackmanit/TInjA)
+- [Master's Thesis (PDF)](https://www.hackmanit.de/images/download/thesis/Improving-the-Detection-and-Identification-of-Template-Engines-for-Large-Scale-Template-Injection-Scanning-Maximilian-Hildebrand-Master-Thesis-Hackmanit.pdf)
+
+## License
+The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and Maximilian Hildebrand as a part of his master's thesis. The Template Injection Playground is licensed under the [Apache License, Version 2.0](license.txt).
+
+<a href="https://hackmanit.de"><img src="https://www.hackmanit.de/templates/hackmanit-v2/img/wbm_hackmanit.png" width="30%"></a>
