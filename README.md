@@ -28,10 +28,10 @@ The Template Injection Playground was developed by [Hackmanit](https://hackmanit
 
 ## Implemented Template Engines
 ### .NET
-- Razor Engine
 - DotLiquid
-- Scriban
 - Fluid
+- Scriban
+- Razor Engine
 ### Elixir
 - EEx
 - LEEx
@@ -98,15 +98,15 @@ The Template Injection Playground was developed by [Hackmanit](https://hackmanit
     - The Playground does not support HTTPS and can therefore only be accessed using HTTP. Check that the URL starts with `http://` and not `https://` when accessing the playground.
 
 ## Background Information
-A blog post providing more information about template injection and [TInja](https://github.com/Hackmanit/TInjA) can be found here:
+A blog post providing more information about template injection and [TInjA – the Template INJection Analyzer](https://github.com/Hackmanit/TInjA) can be found here:
 
 [Soon to be released](https://www.hackmanit.de/en/blog-en/)
 
 The Template Injection Playground was developed as a part of a master's thesis by Maximilian Hildebrand.
 You can find results of the master's thesis publicly available here:
 - [Template Injection Table](https://github.com/Hackmanit/template-injection-table)
-- [Playground](https://github.com/Hackmanit/template-injection-playground)
-- [TInja](https://github.com/Hackmanit/TInjA)
+- [Template Injection Playground](https://github.com/Hackmanit/template-injection-playground)
+- [TInjA – the Template INJection Analyzer](https://github.com/Hackmanit/TInjA)
 - [Master's Thesis (PDF)](https://www.hackmanit.de/images/download/thesis/Improving-the-Detection-and-Identification-of-Template-Engines-for-Large-Scale-Template-Injection-Scanning-Maximilian-Hildebrand-Master-Thesis-Hackmanit.pdf)
 
 ## License
