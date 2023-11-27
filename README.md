@@ -34,6 +34,8 @@ The Template Injection Playground was developed by [Hackmanit](https://hackmanit
 - Fluid
 ### Elixir
 - EEx
+- LEEx
+- HEEx
 ### Go
 - html/template
 - text/template
