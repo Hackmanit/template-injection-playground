@@ -4,7 +4,7 @@
 
 With the *Template Injection Playground* a large number of the **most relevant template engines** (as of September 2023) can be tested for **template injection** possibilities. For this purpose, simple web pages are provided, each of which uses one of the template engines. Furthermore, **various optional security measures** such as sandboxes, encodings, and denylists can be activated.
 
-The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and Maximilian Hildebrand.
+The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and [Maximilian Hildebrand](https://www.github.com/m10x).
 
 - [Features](#features)
 - [Implemented Template Engines](#implemented-template-engines)
@@ -110,6 +110,6 @@ You can find results of the master's thesis publicly available here:
 - [Master's Thesis (PDF)](https://www.hackmanit.de/images/download/thesis/Improving-the-Detection-and-Identification-of-Template-Engines-for-Large-Scale-Template-Injection-Scanning-Maximilian-Hildebrand-Master-Thesis-Hackmanit.pdf)
 
 ## License
-The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and Maximilian Hildebrand as a part of his master's thesis. The Template Injection Playground is licensed under the [Apache License, Version 2.0](license.txt).
+The Template Injection Playground was developed by [Hackmanit](https://hackmanit.de) and [Maximilian Hildebrand](https://www.github.com/m10x) as a part of his master's thesis. The Template Injection Playground is licensed under the [Apache License, Version 2.0](license.txt).
 
 <a href="https://hackmanit.de"><img src="https://www.hackmanit.de/templates/hackmanit-v2/img/wbm_hackmanit.png" width="30%"></a>
