@@ -79,8 +79,9 @@ function overview(r) {
                 "PyPI", "https://pypi.org/project/Django/",
                 "Download Stats", "https://pepy.tech/project/Django"];
             modes=["Default", "/python/Django"];
-            characteristics=`debug: {% debug %}
-            lorem: {% lorem %}
+            characteristics=`debug: {% debug %}<br>
+            lorem: {% lorem %}<br>
+            multiply: {% widthratio 7 1 7 %}<br>
             comment: {# comment #}<br>
             multiline comment: {% comment "Optional note" %} multiline comment {% endcomment %}<br>
             print string: {{"string"}} or {{'string'}}<br>`;
@@ -166,7 +167,9 @@ function overview(r) {
                 "NuGet Gallery", "https://www.nuget.org/packages/DotLiquid/"];
             modes=["Default", "/dotnet/DotLiquid"];
             characteristics=`comment: {%# comment %}<br>
-            multiline comment: {%comment%} multiline comment {%endcomment%}`;
+            multiline comment: {%comment%} multiline comment {%endcomment%}<br>
+            print string: {{'foobar'}}<br>
+            multiply: {{ 7 | times:7 }}`;
             break;
         case 'dotnet/Scriban':
             title="Scriban";
@@ -176,7 +179,8 @@ function overview(r) {
                 "NuGet Gallery 2", "https://www.nuget.org/packages/Scriban.Signed"];
             modes=["Default", "/dotnet/Scriban",
                 "Liquid support", "/dotnet/ScribanLiquid"];
-            characteristics=`multiply: {{ 7*7 }}`;
+            characteristics=`multiply: {{ 7*7 }}<br>
+            multiply (liquid mode): {{ 7 | times:7 }}`;
             break;
         case 'dotnet/Fluid':
             title="Fluid";
@@ -185,7 +189,9 @@ function overview(r) {
                 "NuGet Gallery", "https://www.nuget.org/packages/Fluid.Core"];
             modes=["Default", "/dotnet/Fluid"];
             characteristics=`comment: {%# comment %}<br>
-            multiline comment: {%comment%} multiline comment {%endcomment%}`;
+            multiline comment: {%comment%} multiline comment {%endcomment%}<br>
+            print string: {{'foobar'}}<br>
+            multiply: {{ 7 | times:7 }}`;
             break;
         // ruby
         case 'ruby/Erb':
@@ -224,16 +230,22 @@ function overview(r) {
             documentation=["Documentation","https://haml.info/docs/yardoc/",
             "RubyGems.org", "https://rubygems.org/gems/haml"];
             modes=["Default", "/ruby/Haml"];
-            characteristics=`comment: / comment or -# comment<br>`;
+            characteristics=`comment: / comment or -# comment<br>
+            multiply: = 7*7<br>
+            code execution (w/ output): = ruby code<br>
+            code execution (w/o output): - ruby code`;
             break;
         case 'ruby/Liquid':
             title="Liquid";
             description="A secure, non-evaling end user template engine with aesthetic markup.";
             documentation=["Documentation","https://www.rubydoc.info/gems/liquid/",
-            "RubyGems.org", "https://rubygems.org/gems/liquid"];
+            "RubyGems.org", "https://rubygems.org/gems/liquid",
+            "Cheatsheet", "https://www.twilio.com/docs/studio/user-guide/liquid-template-language"];
             modes=["Default", "/ruby/Liquid"];
             characteristics=`comment: {%# comment %}<br>
-            multiline comment: {%comment%} multiline comment {%endcomment%}`;
+            multiline comment: {%comment%} multiline comment {%endcomment%}<br>
+            print string: {{'foobar'}}<br>
+            multiply: {{ 7 | times:7 }}`;
             break;
         case 'ruby/Slim':
             title="Slim";
@@ -257,9 +269,9 @@ function overview(r) {
             documentation=["Documentation","https://laravel.com/docs/master/blade",
                 "Packagist", "https://packagist.org/packages/laravel/framework"];
             modes=["Default", "/php/Blade"];
-            characteristics=`time: {{ time() }} 
+            characteristics=`time: {{ time() }}<br>
             comment: {{-- comment --}}<br>
-            multiply: {{ 7*7}}
+            multiply: {{ 7*7}}<br>
             string: {{ "string" }} or {{ 'string' }}`;
             break;
         case 'php/Twig':
@@ -273,7 +285,7 @@ function overview(r) {
             context: {{_context}}<br>
             charset: {{_charset}<br> 
             comment: {# comment #}<br>
-            multiply: {{ 7*7 }}
+            multiply: {{ 7*7 }}<br>
             string: {{ "string" }} or {{ 'string' }}`;
             break;
         case 'php/Mustache.php':
@@ -290,9 +302,8 @@ function overview(r) {
                 "RubyGems.org", "https://packagist.org/packages/smarty/smarty"];
             modes=["Default", "/php/Smarty",
                 "Security", "/php/SmartySecurity"];
-            characteristics=`time: { time() }<br>
-            comment: {# comment #}<br>
-            multiply: { 7*7 }<br>
+            characteristics=`comment: {# comment #}<br>
+            multiply: {math equation="7 * 7"}<br>
             string: { "string" } or { 'string' }`;
             break;
         case 'php/Latte':
@@ -375,7 +386,8 @@ function overview(r) {
                 "Maven Repository 3", "https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5"];
             modes=["Default", "/java/Thymeleaf",
                 "Inline", "/java/ThymeleafInline"];
-            characteristics=`multiply: \${ 7*7 } or [[\${ 7*7 }]] or [(\${ 7*7 })]`;
+            characteristics=`multiply: [[\${ 7*7 }]] or [(\${ 7*7 })]
+            multiply (inline): \${ 7*7 }`;
             break;
         // javascript
         case 'javascript/Handlebars':
