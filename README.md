@@ -96,6 +96,8 @@ The Template Injection Playground was developed by [Hackmanit](https://hackmanit
     - Another service already uses the port that the playground wants to use. In this case, either the other service must be stopped or the port of the playground must be changed. The port of the playground can be customized in the [docker-compose.yml](docker-compose.yml) file: Change the port `13370` to any free port for the service `nginx`.
 - `Secure Connection Failed`, `This site can’t provide a secure connection` or something similar.
     - The Playground does not support HTTPS and can therefore only be accessed using HTTP. Check that the URL starts with `http://` and not `https://` when accessing the playground.
+- `nginx: [emerg] host not found in upstream "FOO" in /etc/nginx/nginx.conf:BAR`
+    - Sometimes a container does not spin up properly. Try `docker compose up` again.
 
 ## Background Information
 A blog post providing more information about template injection and [TInjA – the Template INJection Analyzer](https://github.com/Hackmanit/TInjA) can be found here:
