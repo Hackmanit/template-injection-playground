@@ -4,7 +4,7 @@ services:
   nginx:
     build: ./nginx/
     ports:
-      - "127.0.0.1:13370:80"
+      - "127.0.0.1:${TI_PLAYGROUND_PORT:-13370}:80"
 
   golang:
     build: ./golang/
