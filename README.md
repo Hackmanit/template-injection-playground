@@ -93,7 +93,7 @@ The Template Injection Playground was developed by [Hackmanit](https://hackmanit
 
 ## Troubleshooting
 - `Error starting userland proxy: listen tcp4 127.0.0.1:13370: bind: address already in use`
-    - Another service already uses the port that the playground wants to use. In this case, either the other service must be stopped or the port of the playground must be changed. The port of the playground can be customized in the [docker-compose.yml](docker-compose.yml) file: Change the port `13370` to any free port for the service `nginx`.
+    - Another service already uses the port that the playground wants to use. In this case, either the other service must be stopped or the port of the playground must be changed. The port of the playground can be customized by setting the TI_PLAYGROUND_PORT environment variable, or by editing the [docker-compose.yml](docker-compose.yml) file: Change the port `13370` to any free port for the service `nginx`.
 - `Secure Connection Failed`, `This site can’t provide a secure connection` or something similar.
     - The Playground does not support HTTPS and can therefore only be accessed using HTTP. Check that the URL starts with `http://` and not `https://` when accessing the playground.
 - `nginx: [emerg] host not found in upstream "FOO" in /etc/nginx/nginx.conf:BAR`
