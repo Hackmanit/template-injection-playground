@@ -36,11 +36,7 @@ module.exports = {
     plugin(function({matchComponents, theme}) {
       let iconsDir = path.join(__dirname, "../priv/hero_icons/optimized")
       let values = {}
-      let icons = [
-        ["", "/24/outline"],
-        ["-solid", "/24/solid"],
-        ["-mini", "/20/solid"]
-      ]
+      let icons = []
       icons.forEach(([suffix, dir]) => {
         fs.readdirSync(path.join(iconsDir, dir)).map(file => {
           let name = path.basename(file, ".svg") + suffix
