@@ -395,7 +395,9 @@ function overview(r) {
             description="Minimal templating on steroids. Handlebars provides the power necessary to let you build semantic templates effectively with no frustration. Handlebars is largely compatible with Mustache templates. In most cases it is possible to swap out Mustache with Handlebars and continue using your current templates. Handlebars compiles templates into JavaScript functions. This makes the template execution faster than most other template engines.";
             documentation=["Documentation","https://handlebarsjs.com/guide/",
                 "npm", "https://www.npmjs.com/package/handlebars"];
-            modes=["Default", "/javascript/Handlebars"];
+            modes=["Default", "/javascript/Handlebars",
+                "Context", "/javascript/HandlebarsContext"
+            ];
             characteristics=`comment: {{! comment}} or {{!-- comment with mustaches --}}`;
             break;
         case 'javascript/EJS':

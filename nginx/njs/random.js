@@ -75,6 +75,7 @@ function randowNewWriteFile() {
 "python:13375/Cheetah3",
 "python:13375/Chameleon",
 "javascript:13377/Handlebars",
+"javascript:13377/HandlebarsContext",
 "javascript:13377/EJS",
 "javascript:13377/Underscore",
 //"javascript:13377/Vuejs", might crash playground when throwing an error

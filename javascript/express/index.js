@@ -108,6 +108,21 @@ app.all("/Handlebars", (req, res) => {
     }
 })
 
+app.all("/HandlebarsContext", (req, res) => {
+    const nameParam = getName(req)
+    const template = getTemplate(nameParam, "HandlebarsContext")
+    const hideError = getHideError(req)
+    try {
+        res.send(Handlebars.compile(template)({}))
+    } catch (e) {
+        if (hideError == "1") {
+            res.send(template)
+        } else {
+            res.send(e.toString())
+        }
+    }
+})
+
 app.all("/EJS", (req, res) => {
     const nameParam = getName(req)
     const template = getTemplate(nameParam, "EJS")
