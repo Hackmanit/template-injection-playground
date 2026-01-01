@@ -13,6 +13,8 @@ import org.apache.velocity.runtime.resource.util.StringResourceRepository;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.VelocityContext;
+import org.apache.velocity.tools.generic.ClassTool;
+import org.apache.velocity.tools.generic.DateTool;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -95,6 +97,8 @@ public class HelloController {
 
       VelocityContext context = new VelocityContext();
       context.put("name", "World");
+      context.put("class", new ClassTool());
+      context.put("date", new DateTool());
 
       org.apache.velocity.Template template = engine.getTemplate("newTemplate");
       StringWriter writer = new StringWriter();
