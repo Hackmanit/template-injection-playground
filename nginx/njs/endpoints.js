@@ -56,6 +56,7 @@ function echo(r) {
         </div>
         <div class="grid-header-rest">
             <a class="header-link" href="/engines.html">Template Engines</a>
+            <a class="header-link" href="/all.html">All Engines</a>
             <a class="header-link" href="/config.html">Config</a>
             <a class="header-link" href="/links.html">Links</a>
             <a class="header-link" href="/random.html">Random</a>
