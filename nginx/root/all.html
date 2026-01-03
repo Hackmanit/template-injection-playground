@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Template Engines - Template Injection Playground</title>
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        .engine-result {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .engine-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .engine-output {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            min-height: 30px;
+        }
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+        }
+        .input-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid-container">
+    <div class="grid-header-heading">
+        <a class="heading" href="/index.html">Template Injection Playground</a>
+    </div>
+    <div class="grid-header-rest">
+        <a class="header-link" href="/engines.html">Template Engines</a>
+        <a class="header-link" href="/all.html">All Engines</a>
+        <a class="header-link" href="/config.html">Config</a>
+        <a class="header-link" href="/links.html">Links</a>
+        <a class="header-link" href="/random.html">Random</a>
+    </div>
+
+    <div class="grid-2ndRow">
+        <h2>Test All Template Engines</h2>
+        <p>
+            This page sends your input to all available template engines and displays the results below each other.
+            Enter a name or template expression and click "Send to All Engines".
+        </p>
+        
+        <div class="input-section">
+            <label for="nameInput">Input (Name or Template Expression):</label>
+            <input type="text" id="nameInput" class="input-field" placeholder="e.g. {{7*7}} or ${7*7} or <%= 7*7 %>" value="">
+            <br>
+            <button id="submitBtn" class="submit-btn" onclick="testAllEngines()">Send to All Engines</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+</div>
+
+<script>
+// List of all Template Engines with their URLs
+const engines = [
+    // Python
+    { name: "Python - Jinja2", url: "/python/Jinja2", category: "Python" },
+    { name: "Python - Tornado", url: "/python/Tornado", category: "Python" },
+    { name: "Python - Mako", url: "/python/Mako", category: "Python" },
+    { name: "Python - Django", url: "/python/Django", category: "Python" },
+    { name: "Python - SimpleTemplateEngine", url: "/python/SimpleTemplateEngine", category: "Python" },
+    { name: "Python - Pystache", url: "/python/Pystache", category: "Python" },
+    { name: "Python - Cheetah3", url: "/python/Cheetah3", category: "Python" },
+    { name: "Python - Chameleon", url: "/python/Chameleon", category: "Python" },
+    
+    // JavaScript
+    { name: "JavaScript - Handlebars", url: "/javascript/Handlebars", category: "JavaScript" },
+    { name: "JavaScript - EJS", url: "/javascript/EJS", category: "JavaScript" },
+    { name: "JavaScript - Underscore", url: "/javascript/Underscore", category: "JavaScript" },
+    { name: "JavaScript - Vue.js", url: "/javascript/Vuejs", category: "JavaScript" },
+    { name: "JavaScript - Mustache", url: "/javascript/Mustache", category: "JavaScript" },
+    // Not implemented yet { name: "JavaScript - Angular", url: "/javascript/Angular", category: "JavaScript" },
+    { name: "JavaScript - Pug", url: "/javascript/Pug", category: "JavaScript" },
+    { name: "JavaScript - AngularJS", url: "/javascript/Angularjs", category: "JavaScript" },
+    { name: "JavaScript - Hogan.js", url: "/javascript/Hoganjs", category: "JavaScript" },
+    { name: "JavaScript - Nunjucks", url: "/javascript/Nunjucks", category: "JavaScript" },
+    { name: "JavaScript - Dot", url: "/javascript/Dot", category: "JavaScript" },
+    { name: "JavaScript - Velocity.js", url: "/javascript/Velocityjs", category: "JavaScript" },
+    { name: "JavaScript - Eta", url: "/javascript/Eta", category: "JavaScript" },
+    { name: "JavaScript - Twig.js", url: "/javascript/Twigjs", category: "JavaScript" },
+    
+    // Java
+    { name: "Java - Groovy", url: "/java/Groovy", category: "Java" },
+    { name: "Java - Freemarker", url: "/java/Freemarker", category: "Java" },
+    { name: "Java - Velocity", url: "/java/Velocity", category: "Java" },
+    { name: "Java - Thymeleaf", url: "/java/Thymeleaf", category: "Java" },
+    
+    // PHP
+    { name: "PHP - Blade", url: "/php/Blade", category: "PHP" },
+    { name: "PHP - Twig", url: "/php/Twig", category: "PHP" },
+    { name: "PHP - Mustache.php", url: "/php/Mustache.php", category: "PHP" },
+    { name: "PHP - Smarty", url: "/php/Smarty", category: "PHP" },
+    { name: "PHP - Latte", url: "/php/Latte", category: "PHP" },
+    
+    // Ruby
+    { name: "Ruby - ERB", url: "/ruby/Erb", category: "Ruby" },
+    { name: "Ruby - Erubi", url: "/ruby/Erubi", category: "Ruby" },
+    { name: "Ruby - Erubis", url: "/ruby/Erubis", category: "Ruby" },
+    { name: "Ruby - Haml", url: "/ruby/Haml", category: "Ruby" },
+    { name: "Ruby - Liquid", url: "/ruby/Liquid", category: "Ruby" },
+    { name: "Ruby - Slim", url: "/ruby/Slim", category: "Ruby" },
+    { name: "Ruby - Mustache", url: "/ruby/Mustache", category: "Ruby" },
+    
+    // Golang
+    { name: "Golang - html/template", url: "/golang/html-template", category: "Golang" },
+    { name: "Golang - text/template", url: "/golang/text-template", category: "Golang" },
+    
+    // .NET
+    { name: ".NET - Razor Engine", url: "/dotnet/RazorEngine", category: ".NET" },
+    { name: ".NET - DotLiquid", url: "/dotnet/DotLiquid", category: ".NET" },
+    { name: ".NET - Scriban", url: "/dotnet/Scriban", category: ".NET" },
+    { name: ".NET - Fluid", url: "/dotnet/Fluid", category: ".NET" },
+    
+    // Elixir
+    { name: "Elixir - EEx", url: "/elixir/EEx", category: "Elixir" },
+    { name: "Elixir - LEEx", url: "/elixir/LEEx", category: "Elixir" },
+    { name: "Elixir - HEEx", url: "/elixir/HEEx", category: "Elixir" }
+];
+
+async function testAllEngines() {
+    const nameInput = document.getElementById('nameInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultsDiv = document.getElementById('results');
+    
+    const inputValue = nameInput.value.trim();
+    if (!inputValue) {
+        alert('Please enter a name or template expression.');
+        return;
+    }
+    
+    // Disable button during requests
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending requests...';
+    
+    // Clear and prepare results container
+    resultsDiv.innerHTML = '<h3>Results:</h3>';
+    
+    // Create a result container for each engine
+    engines.forEach(engine => {
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'engine-result';
+        resultDiv.innerHTML = `
+            <div class="engine-title">${engine.name}</div>
+            <div class="engine-output loading" id="result-${engine.name.replace(/[^a-zA-Z0-9]/g, '-')}">
+                Loading...
+            </div>
+        `;
+        resultsDiv.appendChild(resultDiv);
+    });
+    
+    // Send all requests in parallel
+    const promises = engines.map(engine => testEngine(engine, inputValue));
+    
+    try {
+        await Promise.allSettled(promises);
+    } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send to All Engines';
+    }
+}
+
+async function testEngine(engine, inputValue) {
+    const resultId = `result-${engine.name.replace(/[^a-zA-Z0-9]/g, '-')}`;
+    const resultElement = document.getElementById(resultId);
+    
+    try {
+        // URL encode the input value and pass as query parameter
+        const encodedInput = encodeURIComponent(inputValue);
+        const url = `${engine.url}?name=${encodedInput}`;
+        
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        
+        if (response.ok) {
+            let result = await response.text();
+            
+            // Extract only the content between <p id="rendered"> and </p>, if present
+            const renderedMatch = result.match(/<p id="rendered">(.*?)<\/p>/s);
+            if (renderedMatch) {
+                result = renderedMatch[1];
+            }
+            
+            resultElement.className = 'engine-output';
+            resultElement.textContent = result || '(Empty Response)';
+        } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+    } catch (error) {
+        resultElement.className = 'engine-output error';
+        resultElement.textContent = `Error: ${error.message}`;
+    }
+}
+
+// Handle Enter key in input field
+document.getElementById('nameInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        testAllEngines();
+    }
+});
+</script>
+
+</body>
+</html>
