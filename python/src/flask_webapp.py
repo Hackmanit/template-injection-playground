@@ -3,6 +3,7 @@ from tornado import template as template_tornado
 from mako import template as template_mako
 from django.template import Engine, Context
 from django.conf import settings
+import django
 from bottle import SimpleTemplate
 from Cheetah.Template import Template as template_cheetah
 from chameleon import PageTemplate
@@ -112,10 +113,11 @@ def mako():
       return repr(e)
 
 @app.route('/Django', methods=['GET','POST'])
-def django():
+def Django():
   hideError = getHideError(request)
   templateString = getTemplate(getName(request), "Django")
   try:
+    django.setup()
     template = Engine().from_string(templateString)
     return template.render(Context())
   except Exception as e:
