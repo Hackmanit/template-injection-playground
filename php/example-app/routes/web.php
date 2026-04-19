@@ -25,7 +25,7 @@ function getTemplate(string $name, string $engine) {
 <html>
 <head>
     <title>PHP $engine</title>
-    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css"> 
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 <body>
@@ -42,7 +42,7 @@ function getTemplate(string $name, string $engine) {
         </div>
 
         <div class="grid-template">
-            <form method="POST" action="$engine">     
+            <form method="POST" action="$engine">
                 <label>Name</label>
                 <input name="name" type="text" value="" />
                 <input type="submit" value="submit" />
@@ -91,7 +91,7 @@ Route::match(['get', 'post'] ,'/Twig', function (Request $request) {
             'index' => $template,
         ]);
         $twig = new \Twig\Environment($loader);
-        
+
         return $twig->render('index', []);
     } catch (Exception $e) {
         if ($hideError == "1") {
@@ -125,7 +125,7 @@ Route::match(['get', 'post'] ,'/TwigSandbox', function (Request $request) {
         $policy = new \Twig\Sandbox\SecurityPolicy($tags, $filters, $methods, $properties, $functions);
         $sandbox = new \Twig\Extension\SandboxExtension($policy, true);
         $twig->addExtension($sandbox);
-        
+
         return $twig->render('index', []);
     } catch (Exception $e) {
         if ($hideError == "1") {
@@ -218,6 +218,7 @@ Route::match(['get', 'post'] ,'/LatteSandbox', function (Request $request) {
         $latte = new Latte\Engine;
         $policy = Latte\Sandbox\SecurityPolicy::createSafePolicy();
         $latte->setPolicy($policy);
+        $latte->setSandboxMode();
         $latte->setLoader(new Latte\Loaders\StringLoader([
             'main.file' => $template,
         ]));
