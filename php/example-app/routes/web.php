@@ -161,7 +161,6 @@ Route::match(['get', 'post'] ,'/Smarty', function (Request $request) {
 
     try {
         $smarty = new Smarty();
-        $smarty->enableSecurity();
         return $smarty->fetch('eval:'.$template);
     } catch (Exception $e) {
         if ($hideError == "1") {
@@ -179,6 +178,7 @@ Route::match(['get', 'post'] ,'/SmartySecurity', function (Request $request) {
 
     try {
         $smarty = new Smarty();
+        $smarty->enableSecurity();
         return $smarty->fetch('eval:'.$template);
     } catch (Exception $e) {
         if ($hideError == "1") {
