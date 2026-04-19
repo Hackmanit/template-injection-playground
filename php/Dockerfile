@@ -6,7 +6,7 @@ FROM php:8.1.16-fpm-alpine3.17 as production
 EXPOSE 13374
 
 ENV APP_ENV=production
-ENV APP_DEBUG=false
+ENV APP_DEBUG=true
 
 # RUN docker-php-ext-configure opcache --enable-opcache && \
 #    docker-php-ext-install pdo pdo_mysql
