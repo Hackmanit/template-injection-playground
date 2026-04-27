@@ -107,7 +107,7 @@ public class HelloController {
 
       return writer.toString();
 		} catch (Exception e) {
-      if (hideError == "1") {
+      if ("1".equals(hideError)) {
         return templateString;
       } else {
 			  return e.toString();
@@ -134,7 +134,7 @@ public class HelloController {
 
       return writer.toString();
 		} catch (Exception e) {
-      if (hideError == "1") {
+      if ("1".equals(hideError)) {
         return templateString;
       } else {
 			  return e.toString();
@@ -157,7 +157,7 @@ public class HelloController {
       Writable template = new SimpleTemplateEngine().createTemplate(templateString).make();
       return template.toString();
 		} catch (Exception e) {
-      if (hideError == "1") {
+      if ("1".equals(hideError)) {
         return templateString;
       } else {
 			  return e.toString();
@@ -180,7 +180,7 @@ public class HelloController {
       templateEngine.setTemplateResolver(new StringTemplateResolver());
       return templateEngine.process(templateString, new org.thymeleaf.context.Context());
 		} catch (Exception e) {
-			if (hideError == "1") {
+			if ("1".equals(hideError)) {
         return templateString;
       } else {
 			  return e.toString();
@@ -204,7 +204,7 @@ public class HelloController {
       templateEngine.setTemplateResolver(new StringTemplateResolver());
       return templateEngine.process(templateString, new org.thymeleaf.context.Context());
 		} catch (Exception e) {
-      if (hideError == "1") {
+      if ("1".equals(hideError)) {
         return templateString;
       } else {
 			  return e.toString();
